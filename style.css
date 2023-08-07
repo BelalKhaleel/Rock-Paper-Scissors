@@ -1,0 +1,50 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-container {
+  display: flex;
+  gap: 20px;
+}
+
+button {
+  height: 50px;
+  width: 90px;
+  font-size: 1.2em;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.results {
+  width: 312px;
+  height: 89px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 1.3em;
+}
+
+.choices, div.scores {
+  display: flex;
+  gap: 100px;
+}
+
+span.scores {
+  margin-top: 54px;
+  margin-bottom: 36px;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+}
+
+span {
+  display: block;
+  width: 100%;
+}
