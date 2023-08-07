@@ -4,13 +4,23 @@ function getComputerChoice() {
   return arr[(Math.floor(Math.random() * arr.length))];
 }
 
-let playerSelection;
+let playerSelection = '';
+
+const playerChoice = document.querySelector('.player-choice');
+const playerChoiceText = document.createElement('span');
+
+const comChoice = document.querySelector('.com-choice');
+const comChoiceText = document.createElement('span');
 
 document.querySelectorAll('button').forEach(button => {
   button.addEventListener('click', () => {
     playerSelection = button.id;
+    playerChoiceText.textContent = playerSelection;
+    playerChoice.appendChild(playerChoiceText);
     console.log('You chose:', playerSelection);
     const computerSelection = getComputerChoice();
+    comChoiceText.textContent = computerSelection;
+    comChoice.appendChild(comChoiceText);
     console.log("Computer's choice:", computerSelection);
     const result = playRound(playerSelection, computerSelection);
     console.log(result);
