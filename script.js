@@ -7,22 +7,36 @@ function getComputerChoice() {
 let playerSelection = '';
 
 const playerChoice = document.querySelector('.player-choice');
-const playerChoiceText = document.createElement('span');
+const displayPlayerChoice = document.createElement('span');
 
 const comChoice = document.querySelector('.com-choice');
-const comChoiceText = document.createElement('span');
+const displayCOMChoice = document.createElement('span');
+
+const roundResult = document.querySelector('.choices');
+const showRoundResult = document.createElement('span');
+
+const selectPlayerScore = document.querySelector('.player-score');
+const displayPlayerScore = document.createElement('span');
+
+const selectComputerScore = document.querySelector('.com-score');
+const displayComputerScore = document.createElement('span');
 
 document.querySelectorAll('button').forEach(button => {
   button.addEventListener('click', () => {
+    
     playerSelection = button.id;
-    playerChoiceText.textContent = playerSelection;
-    playerChoice.appendChild(playerChoiceText);
+    displayPlayerChoice.textContent = playerSelection;
+    playerChoice.appendChild(displayPlayerChoice);
     console.log('You chose:', playerSelection);
+
     const computerSelection = getComputerChoice();
-    comChoiceText.textContent = computerSelection;
-    comChoice.appendChild(comChoiceText);
+    displayCOMChoice.textContent = computerSelection;
+    comChoice.appendChild(displayCOMChoice);
     console.log("Computer's choice:", computerSelection);
+
     const result = playRound(playerSelection, computerSelection);
+    showRoundResult.textContent = result;
+    roundResult.appendChild(showRoundResult);
     console.log(result);
   });
 });
