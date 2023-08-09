@@ -4,59 +4,6 @@ function getComputerChoice() {
   return arr[(Math.floor(Math.random() * arr.length))];
 }
 
-let playerSelection = '';
-
-const playerChoice = document.querySelector('.player-choice');
-const displayPlayerChoice = document.createElement('span');
-
-const comChoice = document.querySelector('.com-choice');
-const displayCOMChoice = document.createElement('span');
-
-const roundResult = document.querySelector('.choices');
-const showRoundResult = document.createElement('span');
-
-let playerScore = 0;
-let computerScore = 0;
-
-const selectPlayerScore = document.querySelector('.player-score');
-const displayPlayerScore = document.createElement('span');
-
-const selectComputerScore = document.querySelector('.com-score');
-const displayComputerScore = document.createElement('span');
-
-document.querySelectorAll('button').forEach(button => {
-  button.addEventListener('click', () => {
-    
-    playerSelection = button.id;
-    displayPlayerChoice.textContent = playerSelection;
-    playerChoice.appendChild(displayPlayerChoice);
-    console.log('You chose:', playerSelection);
-
-    const computerSelection = getComputerChoice();
-    displayCOMChoice.textContent = computerSelection;
-    comChoice.appendChild(displayCOMChoice);
-    console.log("Computer's choice:", computerSelection);
-
-    const result = playRound(playerSelection, computerSelection);
-    showRoundResult.textContent = result;
-    roundResult.appendChild(showRoundResult);
-    console.log(result);
-
-    if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "paper" && computerSelection === "rock" || playerSelection === "scissors" && computerSelection === "paper") {
-      playerScore++;
-    }
-    if (playerSelection === "rock" && computerSelection === "paper" || playerSelection === "paper" && computerSelection === "scissors" || playerSelection === "scissors" && computerSelection === "rock") {
-      computerScore++;
-    }
-
-    displayPlayerScore.textContent = playerScore;
-    selectPlayerScore.appendChild(displayPlayerScore);
-
-    displayComputerScore.textContent = computerScore;
-    selectComputerScore.appendChild(displayComputerScore);
-  });
-});
-
 function playRound(playerSelection, computerSelection) {
 
   switch(true) {
@@ -79,39 +26,84 @@ function playRound(playerSelection, computerSelection) {
   }
 } 
 
-function game() {
-
-  let playerScore = 0;
-  let computerScore = 0;
-
-  //Start round
-  function round() {
-
-  if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "paper" && computerSelection === "rock" || playerSelection === "scissors" && computerSelection === "paper") {
-    playerScore++;
+function showFinalScore(playerScore, computerScore) {
+  if (playerScore > computerScore) {
+    return 'Winner of this game: Player!';
+  } else if (playerScore < computerScore) {
+    return 'Sorry the computer won :(';
+  } else {
+    return 'Game ends in a draw. Try again!';
   }
-  if (playerSelection === "rock" && computerSelection === "paper" || playerSelection === "paper" && computerSelection === "scissors" || playerSelection === "scissors" && computerSelection === "rock") {
-    computerScore++;
-  }
-  console.log("player score:", playerScore, "computer score:", computerScore);
-  return playRound(playerSelection, computerSelection);
-    }
-
-    for (let i = 0; i < 5; i++) {
-       round();
-    }
-
-      console.log("Round :", round());
-
-      console.log('Final score: ', 'player', playerScore, 'computer', computerScore);
-
-      if (playerScore > computerScore) {
-        console.log('Winner of this game: Player!');
-      } else if (playerScore < computerScore) {
-        console.log('Sorry the computer won :(');
-      } else {
-        console.log('Game ends in a draw. Try again!');
-      }
 }
 
-//game();
+let playerSelection = '';
+
+const playerChoice = document.querySelector('.player-choice');
+const displayPlayerChoice = document.createElement('span');
+
+const comChoice = document.querySelector('.com-choice');
+const displayCOMChoice = document.createElement('span');
+
+const roundResult = document.querySelector('.choices');
+const showRoundResult = document.createElement('span');
+
+let playerScore = 0;
+let computerScore = 0;
+
+const selectPlayerScore = document.querySelector('.player-score');
+const displayPlayerScore = document.createElement('span');
+
+const selectComputerScore = document.querySelector('.com-score');
+const displayComputerScore = document.createElement('span');
+
+const finalScore = document.querySelector('.scores');
+const displayFinalScore = document.createElement('span');
+
+let buttonClicks = 0;
+
+//Event listener
+document.querySelectorAll('button').forEach(button => {debugger
+  button.addEventListener('click', () => {
+
+    buttonClicks++;
+    
+    //Show results
+    playerSelection = button.id;
+    displayPlayerChoice.textContent = playerSelection;
+    playerChoice.appendChild(displayPlayerChoice);
+    console.log('You chose:', playerSelection);
+
+    const computerSelection = getComputerChoice();
+    displayCOMChoice.textContent = computerSelection;
+    comChoice.appendChild(displayCOMChoice);
+    console.log("Computer's choice:", computerSelection);
+
+    const result = playRound(playerSelection, computerSelection);
+    showRoundResult.textContent = result;
+    roundResult.appendChild(showRoundResult);
+    console.log(result);
+
+    //Show scores
+
+    if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "paper" && computerSelection === "rock" || playerSelection === "scissors" && computerSelection === "paper") {
+      playerScore++;
+    }
+    if (playerSelection === "rock" && computerSelection === "paper" || playerSelection === "paper" && computerSelection === "scissors" || playerSelection === "scissors" && computerSelection === "rock") {
+      computerScore++;
+    }
+  
+  
+    displayPlayerScore.textContent = playerScore;
+    selectPlayerScore.appendChild(displayPlayerScore);
+
+    displayComputerScore.textContent = computerScore;
+    selectComputerScore.appendChild(displayComputerScore);
+
+    if (buttonClicks === 5) {
+    const score = showFinalScore(playerScore, computerScore);
+    displayFinalScore.textContent = score;
+    finalScore.appendChild(displayFinalScore);
+    buttonClicks = 0;
+    }
+  });
+});
