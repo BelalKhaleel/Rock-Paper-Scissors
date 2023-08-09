@@ -15,6 +15,9 @@ const displayCOMChoice = document.createElement('span');
 const roundResult = document.querySelector('.choices');
 const showRoundResult = document.createElement('span');
 
+let playerScore = 0;
+let computerScore = 0;
+
 const selectPlayerScore = document.querySelector('.player-score');
 const displayPlayerScore = document.createElement('span');
 
@@ -38,6 +41,19 @@ document.querySelectorAll('button').forEach(button => {
     showRoundResult.textContent = result;
     roundResult.appendChild(showRoundResult);
     console.log(result);
+
+    if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "paper" && computerSelection === "rock" || playerSelection === "scissors" && computerSelection === "paper") {
+      playerScore++;
+    }
+    if (playerSelection === "rock" && computerSelection === "paper" || playerSelection === "paper" && computerSelection === "scissors" || playerSelection === "scissors" && computerSelection === "rock") {
+      computerScore++;
+    }
+
+    displayPlayerScore.textContent = playerScore;
+    selectPlayerScore.appendChild(displayPlayerScore);
+
+    displayComputerScore.textContent = computerScore;
+    selectComputerScore.appendChild(displayComputerScore);
   });
 });
 
@@ -68,8 +84,8 @@ function game() {
   let playerScore = 0;
   let computerScore = 0;
 
-  //Start round 1
-  function round1() {
+  //Start round
+  function round() {
 
   if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "paper" && computerSelection === "rock" || playerSelection === "scissors" && computerSelection === "paper") {
     playerScore++;
@@ -81,7 +97,11 @@ function game() {
   return playRound(playerSelection, computerSelection);
     }
 
-      console.log("Round 1:", round1());
+    for (let i = 0; i < 5; i++) {
+       round();
+    }
+
+      console.log("Round :", round());
 
       console.log('Final score: ', 'player', playerScore, 'computer', computerScore);
 
@@ -94,3 +114,4 @@ function game() {
       }
 }
 
+//game();
