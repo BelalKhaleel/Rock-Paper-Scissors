@@ -25,10 +25,10 @@ let humanScore = 0;
 
 // Write the logic to play a single round
 function playRound(humanChoice, computerChoice) {
-  computerChoice = getComputerChoice();
-  console.log("Computer's choice:", computerChoice)
   humanChoice = getHumanChoice();
   console.log("Your choice:", humanChoice)
+  computerChoice = getComputerChoice();
+  console.log("Computer's choice:", computerChoice)
 
     //COM win scenarios
   if ((computerChoice === 'paper' && humanChoice === 'rock') || (computerChoice === 'rock' && humanChoice === 'scissors') || (computerChoice === 'scissors' && humanChoice === 'paper')) {
