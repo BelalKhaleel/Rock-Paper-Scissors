@@ -53,16 +53,16 @@ function playRound(humanChoice, computerChoice) {
 }
 
 // Write the logic to play the entire game
-(function playGame() {
-  for (let i = 1; i <= 5; i++) {
-    playRound();
-    console.log("Scores:", computerScore, humanScore);
-  }
-  if (computerScore > humanScore) {
-    console.log("Sorry, you lost the game! :'(");
-  } else if (humanScore > computerScore) {
-    console.log("Congrats! You won :D")
-  } else {
-    console.log("We don't have a winner :(");
-  }
-})();
+// (function playGame() {
+  // for (let i = 1; i <= 5; i++) {
+  //   playRound();
+  //   console.log("Scores:", computerScore, humanScore);
+  // }
+//   if (computerScore > humanScore) {
+//     console.log("Sorry, you lost the game! :'(");
+//   } else if (humanScore > computerScore) {
+//     console.log("Congrats! You won :D")
+//   } else {
+//     console.log("We don't have a winner :(");
+//   }
+// })();
