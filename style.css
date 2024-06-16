@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
 
 .luckiest-guy-regular {
   font-family: "Luckiest Guy", cursive;
@@ -21,7 +21,7 @@ body {
 h1 {
   text-align: center;
   font-weight: 400;
-  margin-top: .5em;
+  margin-top: 0.5em;
 }
 
 .container {
@@ -36,21 +36,60 @@ h3 {
   margin-bottom: 1em;
 }
 
-.computer-choices {
+.computer-choices > h3 {
+  text-align: end;
+}
+
+.computer-choices,
+.human-choices {
   display: flex;
   flex-direction: column;
+}
+
+.computer-choices {
   align-items: flex-end;
 }
 
-.rock, .paper, .scissors {
+.human-choices > .rock,
+.human-choices > .paper,
+.computer-choices > .rock,
+.computer-choices > .paper {
   display: flex;
-  margin-bottom: 2em;
+  padding-bottom: 30px;
 }
 
 .gesture:hover {
-  box-shadow: 0 .1rem .2rem 0 rgba(0, 0, 0, .05);
-  transition: box-shadow .2s, bottom .2s;
+  background-color: lightblue;
+  box-shadow: 0 0.1rem 0.2rem 0 rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s, bottom 0.2s;
   position: relative;
   bottom: 0;
   cursor: pointer;
+}
+
+.selections, .scores {
+  position: absolute;
+  padding: 20px;
+  padding-left: 40px;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  font-size: medium;
+}
+
+.selections {
+  bottom: 226px;
+}
+
+.player-selection, .computer-selection {
+  margin-bottom: 1em;
+}
+
+.scores {
+  margin-top: 2em;
+  bottom: 30px;
+}
+
+.final-result {
+  margin-top: 1em;
 }

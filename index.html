@@ -10,29 +10,46 @@
   <body>
     <h1>ROCK, PAPER, SCISSORS!</h1>
     <div class="container">
-      <div class="player-choices">
+      <div class="human-choices">
         <h3>Player's choice</h3>
-        <div class="gesture rock">
+        <div class="gesture rock" id="rock">
           <img
             src="./assets/images/rock-hand-svgrepo-com.svg"
             alt="rock-gesture"
-            style="width: 100px"
+            class="rock"
+            style="width: 100px; height: fit-content;"
           />
         </div>
-        <div class="gesture paper">
+        <div class="gesture paper" id="paper">
           <img
             src="./assets/images/paper-hand-svgrepo-com.svg"
             alt="paper-gesture"
+            class="paper"
             style="width: 100px"
           />
         </div>
-        <div class="gesture scissor">
+        <div class="gesture scissors" id="scissors">
           <img
             src="./assets/images/scissors-hand-svgrepo-com.svg"
             alt="scissors-gesture"
+            class="scissors"
             style="width: 100px"
           />
         </div>
+      </div>
+      <div class="selections">
+        <span>Your choice:</span>
+        <span class="player-selection"></span>
+        <span>Computer's choice:</span>
+        <span class="computer-selection"></span>
+        <span class="round-result"></span>
+      </div>
+      <div class="scores">
+        <span>Your score:</span>
+        <span class="player-score"></span>
+        <span>Computer's score:</span>
+        <span class="computer-score"></span>
+        <span class="final-result"></span>
       </div>
       <div class="computer-choices">
         <h3>Computer's choice</h3>

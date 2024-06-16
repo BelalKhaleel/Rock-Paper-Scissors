@@ -1,4 +1,3 @@
-// Write the logic to get the computer choice
 function getComputerChoice() {
   if (Math.random() < 0.3) {
     return "rock";
@@ -9,60 +8,63 @@ function getComputerChoice() {
   }
 }
 
-// Write the logic to get the human choice
-function getHumanChoice() {
-  let humanChoice = prompt("Please choose between rock, paper, and scissors.").toLocaleLowerCase();
-  if (humanChoice !== "rock" && humanChoice !== "paper" && humanChoice !== "scissors") {
-    alert("Invalid input!");
-    humanChoice = prompt("Please choose between rock, paper, and scissors.").toLocaleLowerCase();
-  } 
-  return humanChoice;
-}
+let computerScore = 0;
+let humanScore = 0;
 
-// Write the logic to play a single round
-function playRound(humanChoice, computerChoice) {
-  humanChoice = getHumanChoice();
-  console.log("Your choice:", humanChoice);
-  computerChoice = getComputerChoice();
-  console.log("Computer's choice:", computerChoice);
+  let humanChoices = document.querySelector('.human-choices');
+  humanChoices.addEventListener('click', playRound);
   
-  // Declare the players score variables
-  let computerScore = 0;
-  let humanScore = 0;
-  
-    //COM win scenarios
-  if (
-    (computerChoice === 'paper' && humanChoice === 'rock') || 
-    (computerChoice === 'rock' && humanChoice === 'scissors') || 
-    (computerChoice === 'scissors' && humanChoice === 'paper')
-  ) {
-    computerScore++;
-    console.log(`“You lose! ${computerChoice} beats ${humanChoice}”`);
+  function playRound(e) {
+    // debugger
+    let humanChoice = "";
+    if (e.target.classList.contains('rock')) {
+      humanChoice = 'rock';
+    } else if (e.target.classList.contains('paper')) {
+      humanChoice = 'paper';
+    } else if (e.target.classList.contains('scissors')){
+      humanChoice = 'scissors';
+    }
 
-    //Human win scenarios
-  } else if (
-    (computerChoice === 'rock' && humanChoice === 'paper') || 
-    (computerChoice === 'scissors' && humanChoice === 'rock') || 
-    (computerChoice === 'paper' && humanChoice === 'scissors')
-  ) {
-    humanScore++;
-    console.log(`“You win! ${humanChoice} beats ${computerChoice}”`);
-  } else {
-    console.log("It's a draw!");
+    let computerChoice = getComputerChoice();
+
+    const playerSelection = document.querySelector('.player-selection');
+    playerSelection.textContent = humanChoice;
+
+    const computerSelection = document.querySelector('.computer-selection');
+    computerSelection.textContent = computerChoice;
+
+    const roundResult = document.querySelector('.round-result');
+
+    const playerScore = document.querySelector('.player-score');
+    const comScore = document.querySelector('.computer-score');
+
+    if (
+      (computerChoice === 'paper' && humanChoice === 'rock') || 
+      (computerChoice === 'rock' && humanChoice === 'scissors') || 
+      (computerChoice === 'scissors' && humanChoice === 'paper')
+    ) {
+      computerScore++;
+      roundResult.textContent = `“You lose! ${computerChoice} beats ${humanChoice}”`;
+    } else if (
+      (computerChoice === 'rock' && humanChoice === 'paper') || 
+      (computerChoice === 'scissors' && humanChoice === 'rock') || 
+      (computerChoice === 'paper' && humanChoice === 'scissors')
+    ) {
+      humanScore++;
+      roundResult.textContent = `“You win! ${humanChoice} beats ${computerChoice}”`;
+    } else {
+      roundResult.textContent = "“It's a draw!”";
+    }
+    comScore.textContent = computerScore;
+    playerScore.textContent = humanScore;  
+    
+    const finalResult = document.querySelector('.final-result');
+  
+    if (computerScore === 5) {
+      finalResult.textContent = "Sorry, you lost the game! :'(";
+      humanChoices.removeEventListener('click', playRound)
+    } else if (humanScore === 5) {
+      finalResult.textContent = "Congrats! You won :D";
+      humanChoices.removeEventListener('click', playRound)
+    }
   }
-}
-
-// Write the logic to play the entire game
-// (function playGame() {
-  // for (let i = 1; i <= 5; i++) {
-  //   playRound();
-  //   console.log("Scores:", computerScore, humanScore);
-  // }
-//   if (computerScore > humanScore) {
-//     console.log("Sorry, you lost the game! :'(");
-//   } else if (humanScore > computerScore) {
-//     console.log("Congrats! You won :D")
-//   } else {
-//     console.log("We don't have a winner :(");
-//   }
-// })();
