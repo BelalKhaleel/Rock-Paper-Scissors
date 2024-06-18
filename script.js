@@ -70,6 +70,8 @@ function playRound(e) {
 
   const p = document.querySelector("p");
 
+  const instructions = document.querySelector(".instructions");
+
   if (
     (computerChoice === "paper" && humanChoice === "rock") ||
     (computerChoice === "rock" && humanChoice === "scissors") ||
@@ -102,10 +104,12 @@ function playRound(e) {
 
   if (computerScore === 5) {
     finalResult.textContent = "Sorry, you lost the game! :'(";
+    instructions.classList.add("d-none");
     p.classList.remove("d-none");
     humanChoices.removeEventListener("click", playRound);
   } else if (humanScore === 5) {
     finalResult.textContent = "Congrats! You won :D";
+    instructions.classList.add("d-none");
     p.classList.remove("d-none");
     humanChoices.removeEventListener("click", playRound);
   }
