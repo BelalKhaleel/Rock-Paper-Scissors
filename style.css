@@ -50,18 +50,11 @@ h3 {
   align-items: flex-end;
 }
 
-.human-choices > .rock,
-.human-choices > .paper,
-.computer-choices > .rock,
-.computer-choices > .paper {
-  display: flex;
+.gesture:not(:last-child) {
   padding-bottom: 30px;
 }
 
 .gesture:hover {
-  background-color: lightblue;
-  box-shadow: 0 0.1rem 0.2rem 0 rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.2s, bottom 0.2s;
   position: relative;
   bottom: 0;
   cursor: pointer;
@@ -69,7 +62,6 @@ h3 {
 
 .selections, .scores {
   position: absolute;
-  padding: 20px;
   padding-left: 40px;
   max-width: 400px;
   display: flex;
@@ -78,18 +70,38 @@ h3 {
 }
 
 .selections {
-  bottom: 226px;
-}
-
-.player-selection, .computer-selection {
-  margin-bottom: 1em;
+  bottom: 300px;
 }
 
 .scores {
-  margin-top: 2em;
-  bottom: 30px;
+  bottom: 150px;
 }
 
 .final-result {
   margin-top: 1em;
+}
+
+.computer-choices svg {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.human-choices svg:hover {
+  fill: rgb(184, 201, 208);
+}
+
+.green {
+  fill: green;
+}
+
+.red {
+  fill: red;
+}
+
+.blue {
+  fill: blue;
+}
+
+.black {
+  fill: black;
 }

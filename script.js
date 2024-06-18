@@ -11,27 +11,32 @@ function getComputerChoice() {
 let computerScore = 0;
 let humanScore = 0;
 
-  let humanChoices = document.querySelector('.human-choices');
-  humanChoices.addEventListener('click', playRound);
-  
+let humanChoices = document.querySelector('.human-choices');
+humanChoices.addEventListener('click', playRound);
+
+let svgs = document.querySelectorAll('svg');
+      
   function playRound(e) {
     // debugger
+
+    svgs.forEach(svg => {
+      svg.classList.remove('red');
+      svg.classList.remove('green');
+      svg.classList.remove('blue');
+      svg.classList.add('black');
+    });
+
     let humanChoice = "";
-    if (e.target.classList.contains('rock')) {
+    console.log(e.target);
+    if (e.target.closest('.rock')) {
       humanChoice = 'rock';
-    } else if (e.target.classList.contains('paper')) {
+    } else if (e.target.closest('.paper')) {
       humanChoice = 'paper';
-    } else if (e.target.classList.contains('scissors')){
+    } else if (e.target.closest('.scissors')){
       humanChoice = 'scissors';
     }
 
     let computerChoice = getComputerChoice();
-
-    const playerSelection = document.querySelector('.player-selection');
-    playerSelection.textContent = humanChoice;
-
-    const computerSelection = document.querySelector('.computer-selection');
-    computerSelection.textContent = computerChoice;
 
     const roundResult = document.querySelector('.round-result');
 
@@ -45,6 +50,9 @@ let humanScore = 0;
     ) {
       computerScore++;
       roundResult.textContent = `“You lose! ${computerChoice} beats ${humanChoice}”`;
+      const svg = e.target.closest('svg');
+      svg.classList.remove('black');
+      svg.classList.add('red');
     } else if (
       (computerChoice === 'rock' && humanChoice === 'paper') || 
       (computerChoice === 'scissors' && humanChoice === 'rock') || 
@@ -52,8 +60,14 @@ let humanScore = 0;
     ) {
       humanScore++;
       roundResult.textContent = `“You win! ${humanChoice} beats ${computerChoice}”`;
+      const svg = e.target.closest('svg');
+      svg.classList.remove('black');
+      svg.classList.add('green');
     } else {
-      roundResult.textContent = "“It's a draw!”";
+      roundResult.textContent = `“It's a draw! Both chose ${computerChoice}”`;
+      const svg = e.target.closest('svg');
+      svg.classList.remove('black');
+      svg.classList.add('blue');
     }
     comScore.textContent = computerScore;
     playerScore.textContent = humanScore;  
