@@ -1,10 +1,26 @@
 let computerScore = 0;
 let humanScore = 0;
 
+const roundResult = document.querySelector(".round-result");
+const playerScore = document.querySelector(".player-score");
+const comScore = document.querySelector(".computer-score");
+const finalResult = document.querySelector(".final-result");
+
 let humanChoices = document.querySelector(".human-choices");
 humanChoices.addEventListener("click", playRound);
 
 let svgs = document.querySelectorAll("svg");
+
+let resetRestartButton = document.querySelector('.restart-reset');
+resetRestartButton.addEventListener('click', () => {
+  computerScore = 0;
+  humanScore = 0;
+  roundResult.textContent = '';
+  comScore.textContent = computerScore;
+  playerScore.textContent = humanScore;
+  finalResult.textContent = '';
+  svgs.forEach(svg => svg.classList.add("black"));
+});
 
 function getComputerChoice() {
   if (Math.random() < 0.3) {
@@ -59,17 +75,9 @@ function playRound(e) {
 
   let computerChoice = getComputerChoice();
 
-  const roundResult = document.querySelector(".round-result");
-
-  const playerScore = document.querySelector(".player-score");
-  const comScore = document.querySelector(".computer-score");
-
   const computerRock = document.getElementById("rock");
   const computerPaper = document.getElementById("paper");
   const computerScissors = document.getElementById("scissors");
-
-  const p = document.querySelector("p");
-
   const instructions = document.querySelector(".instructions");
 
   if (
@@ -100,17 +108,11 @@ function playRound(e) {
   comScore.textContent = computerScore;
   playerScore.textContent = humanScore;
 
-  const finalResult = document.querySelector(".final-result");
-
   if (computerScore === 5) {
     finalResult.textContent = "Sorry, you lost the game! :'(";
     instructions.classList.add("d-none");
-    p.classList.remove("d-none");
-    humanChoices.removeEventListener("click", playRound);
   } else if (humanScore === 5) {
     finalResult.textContent = "Congrats! You won :D";
     instructions.classList.add("d-none");
-    p.classList.remove("d-none");
-    humanChoices.removeEventListener("click", playRound);
   }
 }
